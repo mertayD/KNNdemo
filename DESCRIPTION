@@ -1,0 +1,9 @@
+Package: nearestNeighborsDemo
+Type: Package
+Title: knn tutorial
+Version: 2019.01.30
+Author: Mertay Dayanc
+Maintainer: Mertay Dayanc <md2289@nau.edu>
+Description: Demo code to understand C++ code in an R package.
+License: GPL-3
+LinkingTo: RcppEigen
