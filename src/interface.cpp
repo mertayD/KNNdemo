@@ -1,16 +1,18 @@
 #include "knn.h"
 #include <R.h>
 #include <R_ext/Rdynload.h>
-void knn_interface(  const double *train_inputs_ptr,//n_observations, n_features
-                     const double *train_label_ptr, //n_observations
-                     const double *test_input_ptr,
-                     const int *n_observations_ptr, 
+void knn_interface(
+                     const double *train_inputs_ptr,//n_train_observations, n_features
+                     const double *train_label_ptr, //n_train_observations
+                     const double *test_input_ptr, //n_train_observations, n_features
+                     const int *n_test_observations_ptr, 
+                     const int *n_train_observations_ptr, 
                      const int *n_features_ptr, 
                      const int *max_neighbours_ptr,
-                     double *test_predictions_ptr //mac_neighbors
+                     double **test_predictions_ptr //n_test_observations, max_neighbors 
 ){
   int status = knn(train_inputs_ptr, train_label_ptr, test_input_ptr,
-                   *n_observations_ptr, *n_features_ptr, *max_neighbours_ptr,
+                   *n_test_observations_ptr, *n_train_observations_ptr, *n_features_ptr, *max_neighbours_ptr,
                   test_predictions_ptr);
   
   if(status != 0){
