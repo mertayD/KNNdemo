@@ -38,7 +38,7 @@ NNLearnCV <- function(X.mat, y.vec, max.neighbors=30,
 {
 
   #if fold.vec is null randomly assign folds
-  if(fold.vec == null)
+  if(is.null(fold.vec))
   {
     fold.vec <- sample(rep(1:n.folds, l=nrow(X.mat)))
   }
