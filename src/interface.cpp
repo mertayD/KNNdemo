@@ -25,7 +25,7 @@ void knn_interface(
 }
 
 R_CMethodDef cMethods[] = {
-  {"knn_interface" , (DL_FUNC) &knn_interface, 7},
+  {"knn_interface" , (DL_FUNC) &knn_interface, 8},
   {NULL,NULL,0}
 };
 
