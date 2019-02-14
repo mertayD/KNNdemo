@@ -1,6 +1,13 @@
 NNLearnCV <- function(X.mat, y.vec, max.neighbors=30,
                             fold.vec=NULL, n.folds=5) 
 {
+
+  #if fold.vec is null randomly assign folds
+  if(fold.vec == null)
+  {
+    fold.vec <- sample(rep(1:n.folds, l=nrow(X.mat)))
+  }
+
   # make sure that fold.vec is the same size as y.vec
   # which is the same as the number of rows in X.mat
   if(nrow(X.mat) != length(y.vec) &&  
