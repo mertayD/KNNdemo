@@ -1,3 +1,17 @@
+#' Nearest Neighbors Learning Algorithm
+#'
+#'   explination
+#'
+#' @param X.mat a training data set
+#' @param y.vec a training data set
+#' @param max.neighbors=30 The max number of neighbors to fin the best k in nearest neighbors
+#' @param fold.vec=NULL is a vector of fold ID numbers. If fold.vec is NULL, randomly assign fold IDs from 1 to n.folds,
+#' @param n.folds=5 is the number of folds used to compute error
+#'
+#' @return returnList
+#' @export
+#' 
+#' @examples
 NNLearnCV <- function(X.mat, y.vec, max.neighbors=30,
                             fold.vec=NULL, n.folds=5) 
 {
