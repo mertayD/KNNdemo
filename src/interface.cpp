@@ -15,13 +15,17 @@ void knn_interface(
                    *n_test_observations_ptr, *n_train_observations_ptr, *n_features_ptr, *max_neighbours_ptr,
                   test_predictions_ptr);
   
-  if(status != 0){
+  if(status == -1 )
+  {
+    error("Input is not valid, Problem dimension or Max neighbors is less than 0!!");
+  }
+  else if(status != 0){
     error("non-zero exit status from knn");
   }
 }
 
 R_CMethodDef cMethods[] = {
-  {"knn_interface" , (DL_FUNC) &knn_interface, 7},
+  {"knn_interface" , (DL_FUNC) &knn_interface, 8},
   {NULL,NULL,0}
 };
 
