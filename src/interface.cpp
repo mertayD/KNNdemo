@@ -1,4 +1,4 @@
-#include "knn.h"
+x#include "knn.h"
 #include <R.h>
 #include <R_ext/Rdynload.h>
 void knn_interface(
