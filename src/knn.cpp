@@ -18,28 +18,32 @@ int knn(
   Eigen::VectorXd dist_vec(n_train_observations);
   Eigen::VectorXi sorted_index_vec(n_train_observations);
   
-  for(int j = 0; j < n_test_observations; j++ )
+  if(n_features > 0 && n_test_observations > 0 && n_train_observations > 0 && max_neighbours > 0 )
   {
-    for(int i = 0; i< n_train_observations; i++){
-      dist_vec(i) = (train_inputs_mat.row(i).transpose() - test_input_mat.row(j)).norm();
-      sorted_index_vec(i) = i;
-    }
-    std::sort(
-      sorted_index_vec.data(),
-      sorted_index_vec.data()+sorted_index_vec.size(),
-      [&dist_vec](int left, int right){
-        return dist_vec(left) < dist_vec(right);
-      }
-    );
-    double total = 0.0;
-    for(int model_i = 0; model_i<max_neighbours; model_i++)
-    {
-      int neighbors = model_i + 1;
-      int row_i = sorted_index_vec(model_i);
-      total += train_label_ptr[row_i];
-      test_predictions_ptr[j][model_i] = total/neighbors;
-    }
-  }
-    return 0;
   
+    for(int j = 0; j < n_test_observations; j++ )
+    {
+      for(int i = 0; i< n_train_observations; i++){
+        dist_vec(i) = (train_inputs_mat.row(i).transpose() - test_input_mat.row(j)).norm();
+        sorted_index_vec(i) = i;
+      }
+      std::sort(
+        sorted_index_vec.data(),
+        sorted_index_vec.data()+sorted_index_vec.size(),
+        [&dist_vec](int left, int right){
+          return dist_vec(left) < dist_vec(right);
+        }
+      );
+      double total = 0.0;
+      for(int model_i = 0; model_i<max_neighbours; model_i++)
+      {
+        int neighbors = model_i + 1;
+        int row_i = sorted_index_vec(model_i);
+        total += train_label_ptr[row_i];
+        test_predictions_ptr[j][model_i] = total/neighbors;
+      }
+    }
+      return 0;
+  }
+  return -1;
 }

@@ -17,7 +17,7 @@ void knn_interface(
   
   if(status == -1 )
   {
-    error("Input is not valid, Problem dimension or Max neighbors is less than 0!!")
+    error("Input is not valid, Problem dimension or Max neighbors is less than 0!!");
   }
   else if(status != 0){
     error("non-zero exit status from knn");
